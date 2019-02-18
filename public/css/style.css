@@ -1,0 +1,138 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.625;
+    color: #666;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html body{
+  font-size: 14px;
+}
+
+.gs_title{
+  text-align: center;
+}
+
+html body .shop_category{
+  display: none;
+  margin-top: 15px;
+}
+
+.content{
+  padding-top: 25px;
+}
+
+.schedule_name {
+  /* text-overflow:ellipsis;
+  white-space:nowrap;
+  word-wrap:normal;
+  width:100px;
+  overflow:hidden; */
+}
+
+.other_table{
+  background: white;
+  box-shadow : 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.gs_table_box{
+  background: #01a6b4;
+  padding: 25px;
+  color: white;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.gs_table_box .gs_table{
+  color: white;
+  font-size: 12px;
+}
+
+.gs_table_box .gs_table td{
+  padding: 10px 4px;
+}
+
+
+td{
+  /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; */
+}
+
+
+.datepicker-here{
+  width: 210px;
+  margin-right: 15px;
+}
+
+.category_filter{
+  margin-right: 15px;
+}
+
+.check_group{
+  margin-bottom: 15px;
+}
+
+.help{
+  border: 1px solid #00a7b5;
+  color: #00a7b5;
+  padding: 6px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.title{
+  font-size: 20px;
+}
+
+.sub_title{
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+/* ----- Table ----- */
+.table {
+    margin: 0;
+    table-layout: fixed;
+}
+
+.wi-11{
+  width: 11%;
+}
+
+.wi-12{
+  width: 12%
+}
+
+.wi-10{
+  width: 10%
+}
+
+.wi-8{
+  width: 8%;
+}
+
+.main{
+  padding-top: 116px;
+  min-height: 100vh
+}
+
+.btn-zoey{
+  color: white !important;
+  background-color: #00a7b5 !important;
+}
+
+.page-wrapper{
+  background: #e5e5e5;
+  overflow: hidden;
+}
+function setShopList(){
+  let inputs = $('.shop_filter input[type=checkbox]');
+  let shop_list = [];
+  for(let i = 0; i < inputs.length; i ++ ){
+    shop_list.push($(inputs[i]).val());
+  }
+  clist.selected_shop = shop_list;
+}

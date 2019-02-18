@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91675162-15"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-91675162-15');
+</script>
+
+
+<!-- Required meta tags-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="au theme template">
+<meta name="author" content="Hau Nguyen">
+<meta name="keywords" content="au theme template">
+
+<!-- Title Page-->
+<title>TINT CHART</title>
+
+<!-- Fontfaces CSS-->
+<link href="css/font-face.css" rel="stylesheet" media="all">
+<link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+<link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+<!-- Bootstrap CSS-->
+<link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+<!-- Vendor CSS-->
+<link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+<link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+<link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+<link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+<link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="css/loading.min.css">
+
+<!-- Main CSS-->
+<link href="css/theme.css" rel="stylesheet" media="all">
+
+<link href="css/datepicker.css" rel="stylesheet">
+<script src="vendor/jquery-3.2.1.min.js"></script>
+<script src="js/datepicker.min.js"></script>
+<script src="js/datepicker.en.js"></script>
+</head>
+
+<body class="animsition">
+  <div class="page-wrapper">
+    <!-- PAGE CONTAINER-->
+    <div class="container">
+      <!-- MAIN CONTENT-->
+      <div class="main-content">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12">
+                  <div class="m-b-35">
+                    <span class="title" style="font-weight: bold;"> <i class="fa fa-trophy"></i>  틴트 챠트 &nbsp</span>
+                    <a class="help" href="https://quip.com/yxmjAhIUtZ9E" target="_blank">도움말</a>
+                    <p class="sub_title">경쟁사의 주력 상품을 보고 타겟소싱의 클루를 찾아 현장에 적용해보아요!</p>
+                  </div>
+                  <!-- <button class="col-md-1 col-md-offset-5 au-btn au-btn-icon au-btn--blue au-btn--small"><a class="help" href="https://quip.com/yxmjAhIUtZ9E" target="_blank">도움말</a></button> -->
+                </div>
+                <div class="table-data__tool col-md-12">
+                  <div class="col-md-12">
+                    <!-- <div class="rs-select2--light rs-select2--sm">
+                    <select class="js-select2" name="property">
+                    <option selected="selected">경쟁사</option>
+                    <option value="">all</option>
+                    <option value="">CJ오쇼핑</option>
+                    <option value="">롯데홈쇼핑</option>
+                    <option value="">현대홈쇼핑</option>
+                  </select>
+                  <div class="dropDownSelect2"></div>
+                </div> -->
+                <div class="check_group">
+                  <label for="all_shop"><input class="group-all-check-all" type="checkbox" id="all_shop">전체</label>
+                  <!-- <label><input class="group-a-check-all" type="checkbox" name="" id="">Live</label> -->
+                  <!-- <label><input class="group-b-check-all" type="checkbox" name="" id="">Data</label> -->
+
+                  <form class="clearfix group-all shop_filter" action="">
+                    <table class="group-live">
+                      <!-- <thead>
+                      <tr>
+                      <th></th>
+                      <th>Live</th>
+                    </tr>
+                  </thead> -->
+                  <tbody>
+                    <!-- <tr>
+                    <td><input type="checkbox" name="" value="gsshop" id=""></td>
+                    <td>GS</td>
+                  </tr> -->
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="cjsmall">
+                        <input type="checkbox" name="test" id="cjsmall" value="cjmall" onclick="setShop(this)" id="">CJ
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="hmall">
+                        <input type="checkbox" name="" value="hmall" id="hmall" onclick="setShop(this)" id="">HD
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="lottemall">
+                        <input type="checkbox" name="" value="lottemall" id="lottemall" onclick="setShop(this)" id="">LT
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="hnsmall">
+                        <input type="checkbox" name="" value="hnsmall" id="hnsmall" onclick="setShop(this)" id="">H&
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="nsmall">
+                        <input type="checkbox" name="" value="nsmall" id="nsmall" onclick="setShop(this)" id="">NS
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="immall">
+                        <input type="checkbox" name="" value="immall" id="immall" onclick="setShop(this)" id="">IM
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="bshop">
+                        <input type="checkbox" name="" value="bshop" id="bshop" onclick="setShop(this)" id="">BSHOP
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="cjmallplus">
+                        <input type="checkbox" name="" value="cjmallplus" id="cjmallplus" onclick="setShop(this)" id="">CJ+
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="hmallplus">
+                        <input type="checkbox" name="" value="hmallplus" id="hmallplus" onclick="setShop(this)" id="">HD+
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="lotteonetv">
+                        <input type="checkbox" name="" value="lotteonetv" id="lotteonetv" onclick="setShop(this)" id="">LTONETV
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="shopnt">
+                        <input type="checkbox" name="" value="shopnt" id="shopnt" onclick="setShop(this)" id="">SNT
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="ssgshop">
+                        <input type="checkbox" name="" value="ssgshop" id="ssgshop" onclick="setShop(this)" id="">SSG
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="kshop">
+                        <input type="checkbox" name="" value="kshop" id="kshop" onclick="setShop(this)" id="">K
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="wshop">
+                        <input type="checkbox" name="" value="wshop" id="wshop" onclick="setShop(this)" id="">W
+                      </label>
+                    </td>
+                  </th>
+                  <th>
+                    <td>
+                      <label class="checkbox-inline" for="nsmallplus">
+                        <input type="checkbox" name="" value="nsmallplus" id="nsmallplus" onclick="setShop(this)" id="">NS+
+                      </label>
+                    </td>
+                  </th>
+                </tbody>
+              </table>
+              <!-- <table class="group-data">
+              <thead>
+              <tr>
+              <th></th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td><input type="checkbox" name="" id=""></td>
+          <td>Somebody Name</td>
+        </tr>
+        <tr>
+        <td><input type="checkbox" name="" id=""></td>
+        <td>Somebody Name</td>
+      </tr>
+      <tr>
+      <td><input type="checkbox" name="" id=""></td>
+      <td>Somebody Name</td>
+    </tr>
+    <tr>
+    <td><input type="checkbox" name="" id=""></td>
+    <td>Somebody Name</td>
+  </tr>
+  <tr>
+  <td><input type="checkbox" name="" id=""></td>
+  <td>Somebody Name</td>
+</tr>
+<tr>
+<td><input type="checkbox" name="" id=""></td>
+<td>Somebody Name</td>
+</tr>
+</tbody>
+</table> -->
+</form>
+</div>
+<div class="rs-select2--light rs-select2--sm">
+  <select class="js-select2 category_select" name="category">
+    <option value="all" selected>카테고리</option>
+    <option value="생활·주방">생활·주방</option>
+    <option value="가전·디지털">가전·디지털</option>
+    <option value="화장품·미용">화장품·미용</option>
+    <option value="패션·잡화">패션·잡화</option>
+    <option value="유아·아동">유아·아동</option>
+    <option value="여행·레저">여행·레저</option>
+    <option value="식품·건강">식품·건강</option>
+    <option value="보험">보험</option>
+  </select>
+  <div class="dropDownSelect2"></div>
+</div>
+<!-- <div class="rs-select2--light rs-select2--sm">
+<select class="js-select2">
+<option selected="selected">가중분</option>
+<option value="">10분이상</option>
+<option value="">20분이상</option>
+</select>
+</div> -->
+<div class="rs-select2--light form-inline">
+  <!-- <select class="js-select2">
+  <option selected="selected">기간</option>
+  <option value="">2018년 12월</option>
+  <option value="">2019년 1월</option>
+</select> -->
+<input placeholder="클릭하여 날짜선택" type="text" data-range="true" data-multiple-dates-separator=" ~ " data-language="en" class="datepicker-here form-control" data-date-format="yyyy-mm-dd"/>
+<button class="au-btn au-btn-icon au-btn--green au-btn--small" id="search">조회</button>
+</div>
+</div>
+</div>
+
+<div id="app">
+  <input type="hidden" class="category_sender" v-model="selected_category" />
+  <other-rank-component v-bind:other_name_gruop_data="other_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop"></other-rank-component>
+  <gs-rank-component :gs_name_gruop_data="gs_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop"></gs-rank-component>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Jquery JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!-- Bootstrap JS-->
+<script src="vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS       -->
+<script src="vendor/slick/slick.min.js"></script>
+<script src="vendor/wow/wow.min.js"></script>
+<script src="vendor/animsition/animsition.min.js"></script>
+<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="vendor/counter-up/jquery.counterup.min.js"></script>
+<script src="vendor/circle-progress/circle-progress.min.js"></script>
+<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="vendor/select2/select2.min.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/jquery.checkall.js"></script>
+<script src="js/jquery.loading.min.js"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<!-- Main JS-->
+<script src="js/main.js"></script>
+
+<script type="text/javascript">
+$(document).ready(() => {
+  $('.datepicker-here').datepicker({
+    language : 'en',
+    onHide : function(dp,animationCompleted){
+      if(!animationCompleted){
+        let start = dp.selectedDates[0];
+        let end = dp.selectedDates[1];
+        periodValidator(start,end);
+      }
+    }
+  })
+
+  $('.group-a-check-all').checkAll({
+    scope: $('.group-live')
+  });
+
+  $('.group-b-check-all').checkAll({
+    scope: $('.group-data')
+  });
+
+  $('.group-all-check-all').checkAll({
+    scope: $('.group-all')
+  });
+
+
+  $("#search").click(() => {
+    $.showLoading();
+    let period = ($('.datepicker-here').val()).split(' ~ ');
+    let flag = periodValidator(period[0],period[1],"click");
+
+    if(flag==true){
+      $.ajax({
+        url : "/getRedisData",
+        type : "POST",
+        dataType : "json",
+        data : {dateFrom : period[0], dateTo : period[1]},
+        success : (data) => {
+          console.log(data.result);
+          let other_data = data.other_grouped_weight_data;
+          let gs_data = data.gs_grouped_weight_data;
+
+          clist.gs_name_gruop_data = gs_data;
+          sortByWeightedMin(clist.gs_name_gruop_data);
+          clist.other_name_gruop_data = other_data;
+          sortByWeightedMin(clist.other_name_gruop_data);
+          $.hideLoading();
+
+        },
+        error : (e) => {
+          console.error(e);
+          $.hideLoading();
+        }
+      })
+    }
+  })
+
+  $('.group-all-check-all').trigger('click');
+
+  $('.group-all-check-all').on('click',() => {
+    if($('.group-all-check-all').is(':checked')===false){
+      clist.selected_shop = [];
+    }else{
+      setShopList();
+    }
+  })
+
+})
+
+function setShopList(){
+  let inputs = $('.shop_filter input[type=checkbox]');
+  let shop_list = [];
+  for(let i = 0; i < inputs.length; i ++ ){
+    shop_list.push($(inputs[i]).val());
+  }
+  clist.selected_shop = shop_list;
+}
+
+function periodValidator(start,end,tag){
+  let flag = true;
+  let diff = moment(end).diff(moment(start),'days');
+  let future_flag = moment(end).diff(moment(),'times');
+  let today_flag = moment(end).diff(moment(),'days');
+
+  console.log(future_flag);
+  if(diff > 31){
+    alert('최대 한 달까지만 조회가 가능합니다😭😭(업데이트 예정)');
+    $('.datepicker-here').val("");
+    flag = false;
+  }else if(future_flag>0||(end&&today_flag===0)){
+    console.log(future_flag);
+    alert('전 일까지의 데이터만 조회가 가능합니다')
+    $('.datepicker-here').val("");
+    flag = false;
+  }
+  if(tag=='click'){
+    return flag;
+  }
+}
+
+$('.category_select').on('change',() => {
+  clist.selected_category = $('.category_select').val();
+})
+
+function groupByCatagoryAndShop(data){
+  let obj = {
+    hnsmall : [],
+    cjmall : [],
+    lottemall : [],
+    gsshop : [],
+    immall : [],
+    nsmall : [],
+    ssgshop : [],
+    hmallplus : [],
+    kshop : [],
+    cjmallplus : [],
+    lotteonetv : [],
+    gsmyshop : [],
+    shopnt : [],
+    wshop : [],
+    bshop : [],
+    nsmallplus : [],
+    hmall : []
+  }
+}
+
+function sortByCount(grouped_data){
+
+  grouped_data.sort((a,b) => {
+    return b.count - a.count;
+  })
+
+}
+
+function sortByWeightedMin(grouped_data){
+  console.log(grouped_data);
+  grouped_data.sort((a,b) => {
+    return b.weighted_min - a.weighted_min;
+  })
+
+}
+
+function printRanker(grouped_data){
+  let print_html = "";
+  grouped_data.forEach((data) => {
+    if(data.count >= 0){
+      print_html += `<p><img src="${data.img}" width="100px" height="100px"/>${data.shop} / ${data.brand} / ${data.name} / ${data.weighted_min}분 / ${data.count}회</p>`
+    }
+  })
+  $('#app').append(print_html);
+}
+
+function setShop(target){
+  let shop = $(target).val();
+
+  if($(target).is(":checked")===true){
+    clist.selected_shop.push(shop);
+    console.log(clist.selected_shop);
+  }else{
+    let idx = clist.selected_shop.indexOf(shop);
+    clist.selected_shop.splice(idx,1);
+    console.log(clist.selected_shop);
+  }
+}
+
+let clist = new Vue({
+  el : "#app",
+  data : {
+    other_name_gruop_data : [],
+    gs_name_gruop_data : [],
+    selected_category : "all",
+    selected_shop : ["hnsmall","cjmall","lottemall","immall","nsmall","ssgshop","hmallplus","kshop","cjmallplus","lotteonetv","shopnt","wshop","bshop","nsmallplus","hmall"]
+
+  },
+  updated : function () {
+    this.$nextTick(function () {
+      let o_count = $('.col-lg-9 tr').length - 1;
+      for(let i = 1; i <= o_count; i++){
+        $($('.col-lg-9 tr')[i]).find('td')[0].innerHTML = i;
+      }
+
+      let g_count = $('.col-lg-3 tr').length - 1;
+      for(let i = 1; i <= o_count; i++){
+        $($('.col-lg-3 tr')[i]).find('td')[0].innerHTML = i;
+      }
+    })
+  },
+});
+
+Vue.component('other-rank-component',{
+  template : "#otherRankTemplate",
+  props : ['other_name_gruop_data','selected_category','selected_shop'],
+  methods : {
+    viewCheck : function(category, shop){
+      if((category===clist.selected_category||clist.selected_category==="all")&&clist.selected_shop.indexOf(shop)>=0) return true;
+      else return false;
+    },
+  }
+});
+
+Vue.component('gs-rank-component',{
+  template : "#gsRankTemplate",
+  props : ['gs_name_gruop_data','selected_category','selected_shop'],
+  methods : {
+    categotyCheck : function(category){
+      if(category===this.selected_category||this.selected_category==="all") return true;
+      else return false;
+    },
+  }
+});
+
+</script>
+
+</body>
+</html>
+<!-- end document-->

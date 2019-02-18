@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91675162-15"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-91675162-15');
+  </script>
+
+  <meta charset="UTF-8">
+
+  <link href="css/font-face.css" rel="stylesheet" media="all">
+  <link rel="stylesheet" href="css/loading.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/datepicker.css">
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="js/datepicker.min.js"></script>
+  <script src="js/datepicker.en.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/jquery.checkall.js"></script>
+  <script src="js/jquery.loading.min.js"></script>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <div class="container" id="app">
+      <div class="main">
+        <div class="row">
+          <div class="header col-12">
+            <div class="title_area row">
+              <div class="col-6">
+                <p class="h5 float-left" style="font-weight: bold;"><i class="fa fa-trophy"></i>  틴트 챠트</p>
+                <a class="help align-self-center" href="https://quip.com/yxmjAhIUtZ9E" target="_blank">도움말</a>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-6">
+                <p class="sub_title">경쟁사의 주력 상품을 보고 타겟소싱의 클루를 찾아 현장에 적용해보아여!</p>
+              </div>
+            </div>
+            <div class="filter_area row">
+              <div class="col-sm-8">
+                <div class="date_filter form-row">
+                  <input placeholder="yyyy-mm-dd ~ yyyy-mm-dd" type="text" data-range="true" data-multiple-dates-separator=" ~ " data-language="en" class="datepicker-here form-control col-4" data-date-format="yyyy-mm-dd"/>
+                  <button class="btn_search btn-zoey btn" id="search">조회</button>
+                </div>
+              </div>
+              <div class="w-100"></div>
+              <div class="row shop_category col-sm-12">
+                <div class="shop_checkbox">
+                  <label for="all_shop"><input class="group-all-check-all" type="checkbox" id="all_shop">전체</label>
+                  <form class="group-all shop_filter" action="">
+                    <table class="group-live">
+                      <tbody>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="cjsmall">
+                              <input type="checkbox" name="test" id="cjsmall" value="cjmall" v-model="selected_shop" id="">CJ
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="hmall">
+                              <input type="checkbox" name="" value="hmall" id="hmall" v-model="selected_shop" id="">HD
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="lottemall">
+                              <input type="checkbox" name="" value="lottemall" id="lottemall" v-model="selected_shop" id="">LT
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="hnsmall">
+                              <input type="checkbox" name="" value="hnsmall" id="hnsmall" v-model="selected_shop" id="">H&
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="nsmall">
+                              <input type="checkbox" name="" value="nsmall" id="nsmall" v-model="selected_shop" id="">NS
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="immall">
+                              <input type="checkbox" name="" value="immall" id="immall" v-model="selected_shop" id="">IM
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="bshop">
+                              <input type="checkbox" name="" value="bshop" id="bshop" v-model="selected_shop" id="">BSHOP
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="cjmallplus">
+                              <input type="checkbox" name="" value="cjmallplus" id="cjmallplus" v-model="selected_shop" id="">CJ+
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="hmallplus">
+                              <input type="checkbox" name="" value="hmallplus" id="hmallplus" v-model="selected_shop" id="">HD+
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="lotteonetv">
+                              <input type="checkbox" name="" value="lotteonetv" id="lotteonetv" v-model="selected_shop" id="">LTONETV
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="shopnt">
+                              <input type="checkbox" name="" value="shopnt" id="shopnt" v-model="selected_shop" id="">SNT
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="ssgshop">
+                              <input type="checkbox" name="" value="ssgshop" id="ssgshop" v-model="selected_shop" id="">SSG
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="kshop">
+                              <input type="checkbox" name="" value="kshop" id="kshop" v-model="selected_shop" id="">K
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="wshop">
+                              <input type="checkbox" name="" value="wshop" id="wshop" v-model="selected_shop" id="">W
+                            </label>
+                          </td>
+                        </th>
+                        <th>
+                          <td>
+                            <label class="checkbox-inline" for="nsmallplus">
+                              <input type="checkbox" name="" value="nsmallplus" id="nsmallplus" v-model="selected_shop" id="">NS+
+                            </label>
+                          </td>
+                        </th>
+                      </tbody>
+                    </table>
+                  </form>
+                </div>
+                <div class="category_filter align-self-center col-sm-2">
+                  <select class="form-control" v-model="selected_category">
+                    <option value="all" selected>카테고리</option>
+                    <option value="생활·주방">생활·주방</option>
+                    <option value="가전·디지털">가전·디지털</option>
+                    <option value="화장품·미용">화장품·미용</option>
+                    <option value="패션·잡화">패션·잡화</option>
+                    <option value="유아·아동">유아·아동</option>
+                    <option value="여행·레저">여행·레저</option>
+                    <option value="식품·건강">식품·건강</option>
+                    <option value="보험">보험</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content row">
+            <input type="hidden" class="category_sender" v-model="selected_category" />
+            <other-rank-component v-bind:other_name_gruop_data="other_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop"></other-rank-component>
+            <gs-rank-component :gs_name_gruop_data="gs_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop"></gs-rank-component>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <template id="otherRankTemplate">
+    <div class="col-sm-9 panel panel-default">
+      <table class="table table-striped other_table">
+        <thead class="thead-dark">
+          <tr>
+            <th class="wi-8">순위</th>
+            <th class="wi-12">경쟁사 </th>
+            <th class="wi-10">이미지</th>
+            <th class="wi-12">브랜드</th>
+            <th>방송명</th>
+            <th class="wi-11">사용분</th>
+            <th class="wi-11">가중분</th>
+            <th class="wi-8" data-placement="bottom" title="" data-toggle="tooltip" data-original-title="방송횟수">횟수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if=viewCheck(data.category,data.shop)>
+            <td><span class="replacement"></span></td>
+            <td>{{data.shop}}</td>
+            <td><img :src=data.img width="100%" height="auto"/></td>
+            <td>{{data.brand}}</td>
+            <!-- <td class="schedule_name">1</td> -->
+            <td class="schedule_name">{{data.name}}</td>
+            <td>{{data.real_min}}분</td>
+            <td>{{data.weighted_min}}분</td>
+            <td>{{data.count}}회</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </template>
+
+  <template id="gsRankTemplate">
+    <div class="col-sm-3">
+      <div class="gs_table_box">
+        <table class="table gs_table">
+          <thead>
+            <div class="gs_title" data-placement="bottom" title="" data-toggle="tooltip" data-original-title="선택한 조건이 적용된 GS SHOP의 데이터">
+              <h5 class="tb_title_zoey">GS SHOP</h5>
+            </div>
+          </thead>
+          <tbody>
+            <tr class="">
+              <td>순위</td>
+              <td>이미지</td>
+              <td class="">사용분</td>
+              <td class="">가중분</td>
+            </tr>
+            <tr v-for="(data,index) in gs_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if=categotyCheck(data.category)>
+              <td class=""><span class="replacement"></span></td>
+              <td><img :src=data.img width="100%" height="auto"/></td>
+              <td class="">{{data.real_min}}분</td>
+              <td class="">{{data.weighted_min}}분</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </template>
+
+  <script type="text/javascript">
+  $(document).ready(() => {
+    $('.datepicker-here').datepicker({
+      language : 'en',
+      onHide : function(dp,animationCompleted){
+        if(!animationCompleted){
+          let start = dp.selectedDates[0];
+          let end = dp.selectedDates[1];
+          periodValidator(start,end);
+        }
+      }
+    });
+
+    $('.group-a-check-all').checkAll({
+      scope: $('.group-live')
+    });
+
+    $('.group-b-check-all').checkAll({
+      scope: $('.group-data')
+    });
+
+    $('.group-all-check-all').checkAll({
+      scope: $('.group-all')
+    });
+
+    $("#search").click(() => {
+      $.showLoading();
+      let period = ($('.datepicker-here').val()).split(' ~ ');
+      let flag = periodValidator(period[0],period[1],"click");
+
+      if(flag==true){
+        $.ajax({
+          url : "/getRedisData",
+          type : "POST",
+          dataType : "json",
+          data : {dateFrom : period[0], dateTo : period[1]},
+          success : (data) => {
+            console.log(data.result);
+            let other_data = data.other_grouped_weight_data;
+            let gs_data = data.gs_grouped_weight_data;
+
+            clist.gs_name_gruop_data = gs_data;
+            sortByWeightedMin(clist.gs_name_gruop_data);
+            clist.other_name_gruop_data = other_data;
+            sortByWeightedMin(clist.other_name_gruop_data);
+            $('.shop_category').css('display','flex');
+            $.hideLoading();
+          },
+          error : (e) => {
+            console.error(e);
+            $.hideLoading();
+          }
+        })
+      }
+    })
+
+
+    $('.group-all-check-all').trigger('click');
+
+    $('.group-all-check-all').on('click',() => {
+      if($('.group-all-check-all').is(':checked')===false){
+        clist.selected_shop = [];
+      }else{
+        setShopList();
+      }
+    })
+  })
+
+  function setShopList(){
+    let inputs = $('.shop_filter input[type=checkbox]');
+    let shop_list = [];
+    for(let i = 0; i < inputs.length; i ++ ){
+      shop_list.push($(inputs[i]).val());
+    }
+    clist.selected_shop = shop_list;
+  }
+
+  function periodValidator(start,end,tag){
+    let flag = true;
+    let diff = moment(end).diff(moment(start),'days');
+    let future_flag = moment(end).diff(moment(),'times');
+    let today_flag = moment(end).diff(moment(),'days');
+
+    console.log(future_flag);
+    if(diff > 31){
+      alert('최대 한 달까지만 조회가 가능합니다😭😭(업데이트 예정)');
+      $('.datepicker-here').val("");
+      flag = false;
+    }else if(future_flag>0||(end&&today_flag===0)){
+      console.log(future_flag);
+      alert('전 일까지의 데이터만 조회가 가능합니다')
+      $('.datepicker-here').val("");
+      flag = false;
+    }
+    if(tag=='click'){
+      return flag;
+    }
+  }
+
+  function sortByWeightedMin(grouped_data){
+    console.log(grouped_data);
+    grouped_data.sort((a,b) => {
+      return b.weighted_min - a.weighted_min;
+    })
+
+  }
+
+  let clist = new Vue({
+    el : "#app",
+    data : {
+      other_name_gruop_data : [],
+      gs_name_gruop_data : [],
+      selected_category : "all",
+      selected_shop : ["hnsmall","cjmall","lottemall","immall","nsmall","ssgshop","hmallplus","kshop","cjmallplus","lotteonetv","shopnt","wshop","bshop","nsmallplus","hmall"]
+    },
+    updated : function () {
+      this.$nextTick(function () {
+        let o_count = $('.other_table tr').length - 1;
+        for(let i = 1; i <= o_count; i++){
+          $($($('.other_table tr')[i]).find('.replacement')[0]).html(i);
+        }
+
+        let g_count = $('.gs_table tr').length - 1;
+        for(let i = 1; i <= o_count; i++){
+          $($($('.gs_table tr')[i]).find('.replacement')[0]).html(i);
+        }
+      })
+    },
+  });
+
+  Vue.component('other-rank-component',{
+    template : "#otherRankTemplate",
+    props : ['other_name_gruop_data','selected_category','selected_shop'],
+    methods : {
+      viewCheck : function(category, shop){
+        if((category===clist.selected_category||clist.selected_category==="all")&&clist.selected_shop.indexOf(shop)>=0) return true;
+        else return false;
+      },
+    }
+  });
+
+  Vue.component('gs-rank-component',{
+    template : "#gsRankTemplate",
+    props : ['gs_name_gruop_data','selected_category','selected_shop'],
+    methods : {
+      categotyCheck : function(category){
+        if(category===this.selected_category||this.selected_category==="all") return true;
+        else return false;
+      },
+    }
+  });
+
+
+  </script>
+</body>
+
+</html>
