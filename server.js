@@ -97,14 +97,14 @@ app.post('/getRedisData', wrap(async(req, res) => {
 //Redis data handling API
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.get('/redis-load-data',(req, res) => {
-  let period_list = FUNC.setPeriodList(90);
-  FUNC.loadDataToRedis(period_list, cacheClient, res);
-});
+// app.get('/redis-load-data',(req, res) => {
+//   let period_list = FUNC.setPeriodList(90);
+//   FUNC.loadDataToRedis(period_list, cacheClient, res);
+// });
 
-app.get('/flushall',(req, res) => {
-  res.send(cacheClient.flushall());
-});
+// app.get('/flushall',(req, res) => {
+//   res.send(cacheClient.flushall());
+// });
 
 cron.schedule('0 0 4 * * *',() => {
   let today = moment().add(0,'days').format("YYYY-MM-DD");
