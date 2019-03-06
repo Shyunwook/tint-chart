@@ -68,7 +68,6 @@ module.exports = () => {
             reject(Error('something is wrong -> getSchedule'));
           }else if(response.statusCode === 200){
             let result = JSON.stringify(data);
-            console.log(result);
             resolve(data);
           }else{
             console.log(response.statusCode);
@@ -113,9 +112,7 @@ function readS3weightedRate(start,end){
     let work_list = [];
 
     for(let i = 0; i <= diff; i ++){
-      console.log(i);
       let day = moment(start).add(i,'days').format("YYYYMMDD");
-      console.log(day);
       let work = new Promise((resolve, reject) => {
         request({
           url : `https://s3.ap-northeast-2.amazonaws.com/tint-weight.innolab.us/${day}.json`,
