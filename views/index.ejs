@@ -26,11 +26,14 @@
   <script src="js/moment.js"></script>
   <script src="js/jquery.checkall.js"></script>
   <script src="js/jquery.loading.min.js"></script>
+  <script type="text/javascript" src="js/jquery.simplePagination.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/simplePagination.css"/>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -188,9 +191,10 @@
               </div>
             </div>
           </div>
+          <div id="pagination-holder"></div>
           <div class="content row">
             <input type="hidden" class="category_sender" v-model="selected_category" />
-            <other-rank-component v-bind:other_name_gruop_data="other_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop"></other-rank-component>
+            <other-rank-component v-bind:other_name_gruop_data="other_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop" :current_page="current_page"></other-rank-component>
             <gs-rank-component :gs_name_gruop_data="gs_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop"></gs-rank-component>
           </div>
         </div>
@@ -214,7 +218,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if=viewCheck(data.category,data.shop)>
+          <!-- <tr data-toggle="modal" data-target="#exampleModal" :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)&&(index < current_page*100 && index > (current_page-1)*100)"> -->
+          <!-- <tr data-toggle="modal" data-target="#exampleModal" :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)"> -->
+          <tr :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)">
             <td><span class="replacement"></span></td>
             <td>{{data.shop}}</td>
             <td><img :src=data.img width="100%" height="auto"/></td>
@@ -258,8 +264,35 @@
     </div>
   </template>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="test"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script type="text/javascript">
   $(document).ready(() => {
+    $('#pagination-holder').click(function(){
+      $(function() {
+        clist.current_page = $("#pagination-holder").pagination('getCurrentPage');
+      });
+    })
+
     $('.datepicker-here').datepicker({
       language : 'en',
       onHide : function(dp,animationCompleted){
@@ -290,7 +323,7 @@
 
       if(flag==true){
         $.ajax({
-          url : "/getRedisData",
+          url : "/getScheduleData",
           type : "POST",
           dataType : "json",
           data : {dateFrom : period[0], dateTo : period[1]},
@@ -298,6 +331,15 @@
             console.log(data.result);
             let other_data = data.other_grouped_weight_data;
             let gs_data = data.gs_grouped_weight_data;
+
+            // $(function() {
+            //   $("#pagination-holder").pagination({
+            //     items: clist.other_name_gruop_data.length,
+            //     itemsOnPage: 100,
+            //     cssStyle: 'light-theme'
+            //   });
+            // });
+
 
             clist.gs_name_gruop_data = gs_data;
             sortByWeightedMin(clist.gs_name_gruop_data);
@@ -323,6 +365,33 @@
       }else{
         setShopList();
       }
+    })
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var data = button.data('history') // Extract info from data-* attributes
+      console.log(data[0]);
+      var modal = $(this);
+      var length = data.length;
+      var content ='';
+      for(let i = 0; i < length; i ++){
+        content +=
+        `
+        <div class="modal_contents">
+        <p><a href="${data[i].link}" target=_blank>${data[i].item}</a></p>
+        <p>방송날짜 : ${data[i].date} ${data[i].start_time} ~ ${data[i].end_time}</p>
+        </div>
+        `
+      }
+
+      modal.find('.modal-body').append(content);
+    })
+
+
+    $('#exampleModal').on('hide.bs.modal', function (event) {
+      var modal = $(this);
+
+      modal.find('.modal_contents').remove();
     })
   })
 
@@ -362,7 +431,6 @@
     grouped_data.sort((a,b) => {
       return b.weighted_min - a.weighted_min;
     })
-
   }
 
   let clist = new Vue({
@@ -371,7 +439,8 @@
       other_name_gruop_data : [],
       gs_name_gruop_data : [],
       selected_category : "all",
-      selected_shop : ["hnsmall","cjmall","lottemall","immall","nsmall","ssgshop","hmallplus","kshop","cjmallplus","lotteonetv","shopnt","wshop","bshop","nsmallplus","hmall"]
+      selected_shop : ["hnsmall","cjmall","lottemall","immall","nsmall","ssgshop","hmallplus","kshop","cjmallplus","lotteonetv","shopnt","wshop","bshop","nsmallplus","hmall"],
+      current_page : 1
     },
     updated : function () {
       this.$nextTick(function () {
@@ -390,7 +459,7 @@
 
   Vue.component('other-rank-component',{
     template : "#otherRankTemplate",
-    props : ['other_name_gruop_data','selected_category','selected_shop'],
+    props : ['other_name_gruop_data','selected_category','selected_shop','current_page'],
     methods : {
       viewCheck : function(category, shop){
         if((category===clist.selected_category||clist.selected_category==="all")&&clist.selected_shop.indexOf(shop)>=0) return true;

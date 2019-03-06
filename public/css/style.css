@@ -128,11 +128,3 @@ td{
   background: #e5e5e5;
   overflow: hidden;
 }
-function setShopList(){
-  let inputs = $('.shop_filter input[type=checkbox]');
-  let shop_list = [];
-  for(let i = 0; i < inputs.length; i ++ ){
-    shop_list.push($(inputs[i]).val());
-  }
-  clist.selected_shop = shop_list;
-}
