@@ -122,11 +122,11 @@ app.listen('8081',function(){
 
 
 //Redis data handling API / 처음 레디스 데이터 세팅 API-----------------------------------------------------------------------------------------------
-// app.get('/flushall',(req, res) => {
-//   res.send(cacheClient.flushall());
-// });
+app.get('/flushall',(req, res) => {
+  res.send(cacheClient.flushall());
+});
 
-// app.get('/redis-load-data',(req, res) => {
-//   let period_list = REDIS.setPeriodList(90);
-//   REDIS.loadDataToRedis(period_list, cacheClient, res);
-// });
+app.get('/redis-load-data',(req, res) => {
+  let period_list = REDIS.setPeriodList(90);
+  REDIS.loadDataToRedis(period_list, cacheClient, res);
+});
