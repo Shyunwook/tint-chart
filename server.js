@@ -10,8 +10,8 @@ let cron = require('node-cron');
 let request = require('request');
 
 let redis = require('redis');
-// let cacheClient = redis.createClient(6379,'172.31.29.112');
-let cacheClient = redis.createClient(6379,'127.0.0.1');
+let cacheClient = redis.createClient(6379,'172.31.29.112');
+// let cacheClient = redis.createClient(6379,'127.0.0.1');
 
 const FUNC = require('./common.js')();
 const REDIS = require('./redis-func.js')();
