@@ -10,8 +10,8 @@ let cron = require('node-cron');
 let request = require('request');
 
 let redis = require('redis');
-let cacheClient = redis.createClient(6379,'172.31.29.112');
-// let cacheClient = redis.createClient(6379,'127.0.0.1');
+// let cacheClient = redis.createClient(6379,'172.31.29.112');
+let cacheClient = redis.createClient(6379,'127.0.0.1');
 
 const FUNC = require('./common.js')();
 const REDIS = require('./redis-func.js')();
@@ -39,36 +39,6 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.get('/',(req, res) => {
   res.render('index.ejs',{result : "", other_grouped_weight_data : "", gs_grouped_weight_data : ""});
 });
-//
-// app.get('/test',(req, res) => {
-//   let period = {
-//   "dateFrom": "2018-12-31",
-//   "dateTo": "2018-12-31"
-// };
-//   return new Promise((resolve, reject) => {
-//     let url = "https://fy2b0csnq7.execute-api.us-west-2.amazonaws.com/prod/vaccine-c-api";
-//     request({
-//       url : url,
-//       method : 'POST',
-//       body : period,
-//       json : true,
-//       encoding : null
-//     },(error, response, data) => {
-//       if(error){
-//         console.error(error);
-//         reject(Error('something is wrong -> getSchedule'));
-//       }else if(response.statusCode === 200){
-//         let result = JSON.stringify(data);
-//         resolve(data);
-//       }else{
-//         console.log(response.statusCode);
-//         reject(Error('wrong status code...'));
-//       }
-//     })
-//   }).then((val) => {
-//     console.log(val);
-//   })
-// })
 
 app.post('/getScheduleData', wrap(async(req, res) => {
   let period = {dateFrom : req.body.dateFrom, dateTo : req.body.dateTo};

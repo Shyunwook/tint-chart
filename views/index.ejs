@@ -44,7 +44,7 @@
           <div class="header col-12">
             <div class="title_area row">
               <div class="col-6">
-                <p class="h5 float-left" style="font-weight: bold;"><i class="fa fa-trophy"></i>  틴트 챠트</p>
+                <p class="h5 float-left" style="font-weight: bold;"><i class="fa fa-trophy"></i>  TV상품 소싱 레이더</p>
                 <a class="help align-self-center" href="https://quip.com/yxmjAhIUtZ9E" target="_blank">도움말</a>
               </div>
               <div class="w-100"></div>
@@ -218,14 +218,12 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr data-toggle="modal" data-target="#exampleModal" :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)&&(index < current_page*100 && index > (current_page-1)*100)"> -->
-          <!-- <tr data-toggle="modal" data-target="#exampleModal" :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)"> -->
-          <tr :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)">
+          <tr data-toggle="modal" data-target="#exampleModal" :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)&&(index < current_page*100 && index > (current_page-1)*100)">
+          <!-- <tr :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)"> -->
             <td><span class="replacement"></span></td>
             <td>{{data.shop}}</td>
             <td><img :src=data.img width="100%" height="auto"/></td>
             <td>{{data.brand}}</td>
-            <!-- <td class="schedule_name">1</td> -->
             <td class="schedule_name">{{data.name}}</td>
             <td>{{data.real_min}}분</td>
             <td>{{data.weighted_min}}분</td>
@@ -332,13 +330,13 @@
             let other_data = data.other_grouped_weight_data;
             let gs_data = data.gs_grouped_weight_data;
 
-            // $(function() {
-            //   $("#pagination-holder").pagination({
-            //     items: clist.other_name_gruop_data.length,
-            //     itemsOnPage: 100,
-            //     cssStyle: 'light-theme'
-            //   });
-            // });
+            $(function() {
+              $("#pagination-holder").pagination({
+                items: clist.other_name_gruop_data.length,
+                itemsOnPage: 100,
+                cssStyle: 'light-theme'
+              });
+            });
 
 
             clist.gs_name_gruop_data = gs_data;
