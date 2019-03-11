@@ -39,6 +39,12 @@
 <body>
   <div class="page-wrapper">
     <div class="container" id="app">
+
+      <modal v-if="show_modal" @close="show_modal = false" :history="history">
+
+        <h3 slot="header">방송 이력</h3>
+      </modal>
+
       <div class="main">
         <div class="row">
           <div class="header col-12">
@@ -191,7 +197,7 @@
               </div>
             </div>
           </div>
-          <div id="pagination-holder"></div>
+          <!-- <div id="pagination-holder"></div> -->
           <div class="content row">
             <input type="hidden" class="category_sender" v-model="selected_category" />
             <other-rank-component v-bind:other_name_gruop_data="other_name_gruop_data" :selected_category="selected_category" :selected_shop="selected_shop" :current_page="current_page"></other-rank-component>
@@ -218,8 +224,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-toggle="modal" data-target="#exampleModal" :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)&&(index < current_page*100 && index > (current_page-1)*100)">
-          <!-- <tr :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)"> -->
+          <!-- <tr data-toggle="modal" data-target="#exampleModal" :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)"> -->
+          <tr :data-history="JSON.stringify(data.history)" v-for="(data,index) in other_name_gruop_data" :data-category=data.category :data-brand=data.brand :data-shop=data.shop v-if="viewCheck(data.category,data.shop)" @click="setModal(data)">
             <td><span class="replacement"></span></td>
             <td>{{data.shop}}</td>
             <td><img :src=data.img width="100%" height="auto"/></td>
@@ -262,25 +268,39 @@
     </div>
   </template>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p class="test"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+  <script type="text/x-template" id="modal-template">
+    <transition name="modal">
+      <div class="modal-mask" @click="closeModal(event)">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <div class="modal-header">
+              <slot name="header">
+                default header
+              </slot>
+            </div>
+
+            <div class="modal-body">
+              <div class="history" v-for="(data, index) in history">
+                <p>방송명 : {{data.item}}</p>
+                <p>방송날짜 : {{data.date}} {{data.start_time}} ~ {{data.end_time}} ({{data.real_min}}분)</p>
+                <p>가격 : {{data.price}}</p>
+                <p>가중분 : {{data.weighted_min}}분</p>
+                <p>링크 : <a :href="data.link" target="_blank">{{data.link}}</a></p>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <slot name="footer">
+                <button class="modal-default-button" @click="$emit('close')">
+                  close
+                </button>
+              </slot>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </transition>
+  </script>
 
 
   <script type="text/javascript">
@@ -438,7 +458,9 @@
       gs_name_gruop_data : [],
       selected_category : "all",
       selected_shop : ["hnsmall","cjmall","lottemall","immall","nsmall","ssgshop","hmallplus","kshop","cjmallplus","lotteonetv","shopnt","wshop","bshop","nsmallplus","hmall"],
-      current_page : 1
+      current_page : 1,
+      show_modal : false,
+      history : []
     },
     updated : function () {
       this.$nextTick(function () {
@@ -453,6 +475,17 @@
         }
       })
     },
+    watch : {
+      selected_category : function(){
+        $(function() {
+          $("#pagination-holder").pagination({
+            items: clist.other_name_gruop_data.length,
+            itemsOnPage: 100,
+            cssStyle: 'light-theme'
+          });
+        });
+      }
+    }
   });
 
   Vue.component('other-rank-component',{
@@ -463,6 +496,11 @@
         if((category===clist.selected_category||clist.selected_category==="all")&&clist.selected_shop.indexOf(shop)>=0) return true;
         else return false;
       },
+      setModal : function(row){
+        clist.history = row.history;
+        clist.show_modal = true;
+        console.log(clist.history);
+      }
     }
   });
 
@@ -476,6 +514,21 @@
       },
     }
   });
+
+  Vue.component('modal',{
+    template: '#modal-template',
+    props : ['history'],
+    methods : {
+      closeModal : function(e){
+        let target = $(e.target);
+        console.log(target);
+        if($(target).hasClass("modal-wrapper") == true){
+          console.log('s');
+          clist.show_modal = false;
+        }
+      }
+    }
+  })
 
 
   </script>
